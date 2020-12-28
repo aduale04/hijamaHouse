@@ -1,0 +1,37 @@
+<div class="banner-slider">
+    <div class="flexslider">
+        <div class="banner-info" >
+            <p>INTRODUCTORY OFFER FOR FULL BODY CUPPING £25</p>
+            <p >
+                {{!-- Monday to Friday 6:00pm – 9:00 pm <br/>
+                Saturday to Sunday 9:00am to 9:00pm <br/> --}}
+                Basic Message + Full body Hijama Therapy 1 hour <br/>
+                <span class="animated flash">@ £25 Complimentary</span>
+            </p>
+            <a href="/book" class="btn btn-sm btn-1">Book Now</a>
+
+        </div>
+        <ul class="slides">
+            <li data-thumb="img/hijama_11.png">
+                <img src="img/hijama_11.png" class="gradient-images" alt=""/>
+            </li>
+            <li data-thumb="img/service/message-therapy.png">
+                <img src="img/service/message-therapy.png" class="gradient-images" alt=""/>
+            </li>
+            <li data-thumb="img/service/facial.png">
+                <img src="img/service/facial.png" class="gradient-images" alt=""/>
+            </li>
+
+        </ul>
+    </div>
+    <script defer src="js/jquery.flexslider.js"></script>
+
+    <script>
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
+</div>
