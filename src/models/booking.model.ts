@@ -50,7 +50,7 @@ class Booking {
             }
             result({
                 success: true,
-                message: "Booking successful.",
+                message: "Booking successful. Please check your email inbox or spam.",
                 data: {...this.book}
             });
         });
@@ -126,6 +126,8 @@ class Booking {
         } else {
             timeTo = `${this.book.timeTo.toString().substr(0, 2)}:${this.book.timeTo.toString().substr(2, 4)} AM`
         }
+
+
         const date=new Date(this.book.dateBooking)
         const emailBody = `
         <div class="container">
@@ -141,7 +143,7 @@ class Booking {
                     <br/>
                     Kind Regards,<br/>
                     The ${process.env.PRACTICE_NAME} Team<br/>
-                    Hijama House, 234 Old Kent Road, London SE1 5UB.Clinic based Services | Mobile services, Hijama.house@gmail.com, +44 7561 323849
+                    Hijama House, 234 Old Kent Road, London SE1 5UB.Clinic based Services | Mobile services, info@hijamahouse.co.uk, +44 7561 323849
                 </div>
                 <div class="mail-footer">
                     <p>With ❤ by Hijama</p>
@@ -152,6 +154,23 @@ class Booking {
     `;
         const subject="Your Appointment at Hijama House Old Kent Road is Confirmed"
         sendEmailNotification(this.book.email,emailBody,subject)
+
+        const htmlBodyBooking = `
+            <h3>Booking Details</h3>
+            <ul>
+                <li>Package: ${this.book.package}</li>
+                <li>Date: ${this.book.dateBooking}</li>
+                <li>Name: ${this.book.firstName} ${this.book.lastName}</li>
+                <li>Phone Number: ${this.book.phoneNumber}</li>
+                <li>E-Mail: ${this.book.email}</li>
+            </ul>
+            <h3>Message</h3>
+            <p>${this.book.comments}</p>
+        `;
+
+        const subjectBooked = `Customer, ${this.book.firstName} ${this.book.lastName} has been booked ${timeFrom} for hijama`
+        const emailToBooking = `${process.env.EMAIL_DEFAULT_TO}`
+        sendEmailNotification(emailToBooking, htmlBodyBooking, subjectBooked);
     }
 
     findAvailableTimeByDate = (date:string, result: any) => {
