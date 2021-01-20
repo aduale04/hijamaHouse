@@ -13,7 +13,7 @@ const sendEmailNotification=(to:string, bodyHtml:string, subject:string)=>{
     const transporter = nodemailer.createTransport(emailConfigOption);
 
     const mailOptions={
-        from: `Hijama <${process.env.EMAIL_USERNAME}>`, // sender address
+        from: `Hijamahouse <${process.env.EMAIL_USERNAME}>`, // sender address
         to: to, // list of receivers
         cc: process.env.EMAIL_DEFAULT_TO,
         subject: subject, // Subject line
