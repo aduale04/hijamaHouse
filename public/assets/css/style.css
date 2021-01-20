@@ -2313,7 +2313,7 @@ ul.s_social.two {
 }
 
 .flexslider .slides img {
-    height: min-content;
+    height: 100vh;
 }
 
 .btn-time {

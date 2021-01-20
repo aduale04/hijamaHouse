@@ -1,121 +1,141 @@
 <div id="contact" class="contact">
-    <div class="container">
-        {{#if message}}
-            <div class="col-md-12 alert-danger">{{message}}</div>
-        {{/if}}
-        <div class="clearfix"></div>
-        <div class="col-md-12 box">
-            <form id="form" class="form-horizontal booking-form" action="/bookNow" method="post">
-                <div class="container">
-                    <p class="your-para">First Name :</p>
-                    <input id="firstName" name="firstName" type="text" placeholder="First Name"
-                           value="{{data.firstName}}" class="col-md-6" required>
-                    <p class="your-para">Last Name :</p>
-                    <input id="lastName" name="lastName" type="text" placeholder="Last Name"
-                           value="{{data.lastName}}" class="col-md-6" required>
-                    <p class="your-para">Phone Number :</p>
-                    <input id="name" name="phoneNumber" type="text" placeholder="Phone Number"
-                           value="{{data.phoneNumber}}" class="col-md-6" required>
-                    <p class="your-para">Email :</p>
-                    <input id="email" name="email" type="email" placeholder="Email" value="{{data.email}}"
-                           class="col-md-6" required>
-                    <p class="your-para">Choose Package :</p>
-                    <div class="radio-group col-md-6">
-                        <div class="radio">
-                            <label><input type="radio" name="package" value="Hijama Therapy/cupping" checked required>
-                                Hijama Therapy/cupping</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="package" value="Message Therapy" required> Message
-                                Therapy</label>
-                        </div>
-                    </div>
-                    <p class="your-para">Is Your First Time at Hijama House? :</p>
-                    <div class="radio-group col-md-6">
-                        <div class="radio">
-                            <label><input type="radio" name="isFirstTime" value="yes" checked required> Yes</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="isFirstTime" value="no" required> No</label>
-                        </div>
-                    </div>
-                    <p class="your-para">Select Date Appointment :</p>
-                    <input type="date" onChange="checkAvailableTime(this.value)" name="dateBooking" id="dateBooking"
-                           class="col-md-6" min="{{data.dateBooking}}" value="{{data.dateBooking}}" required/>
-                    <div class="row">
-                        <div class="col-md-12">
-                            Time available on <strong id="dateDisplay">{{data.date}}</strong>
-                            <p id="timeNotAvailable">
-                                {{#if timeNotAvailable}}
-                                    {{timeNotAvailable}}
-                                {{/if}}
-                            </p>
+  <div class="container">
+    {{#if message}}
+      <div class="col-md-12 alert-danger">{{message}}</div>
+    {{/if}}
+    <div id="cancelMessage" class="col-md-12 alert-danger hide">===</div>
+    <div class="clearfix"></div>
+    <div class="col-md-12 box">
+      <form id="form" class="form-horizontal booking-form" action="/bookNow" method="post">
+        <div class="container">
+          <p class="your-para">First Name :</p>
+          <input id="firstName" name="firstName" type="text" placeholder="First Name"
+                 value="{{data.firstName}}" class="col-md-6" required>
+          <p class="your-para">Last Name :</p>
+          <input id="lastName" name="lastName" type="text" placeholder="Last Name"
+                 value="{{data.lastName}}" class="col-md-6" required>
+          <p class="your-para">Phone Number :</p>
+          <input id="name" name="phoneNumber" type="text" placeholder="Phone Number"
+                 value="{{data.phoneNumber}}" class="col-md-6" required>
+          <p class="your-para">Email :</p>
+          <input id="email" name="email" type="email" placeholder="Email" value="{{data.email}}"
+                 class="col-md-6" required>
+          <p class="your-para">Choose Package :</p>
+          <div class="radio-group col-md-6">
+            <div class="radio">
+              <label><input type="radio" name="package" value="Hijama Therapy/cupping" checked required>
+                Hijama Therapy/cupping</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="package" value="Message Therapy" required> Message
+                Therapy</label>
+            </div>
+          </div>
+          <p class="your-para">Is Your First Time at Hijama House? :</p>
+          <div class="radio-group col-md-6">
+            <div class="radio">
+              <label><input type="radio" name="isFirstTime" value="yes" checked required> Yes</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="isFirstTime" value="no" required> No</label>
+            </div>
+          </div>
+          <p class="your-para">Select Date Appointment :</p>
+          <input type="date" onChange="checkAvailableTime(this.value)" name="dateBooking" id="dateBooking"
+                 class="col-md-6" min="{{data.dateBooking}}" value="{{data.dateBooking}}" required/>
+          <div class="row">
+            <div class="col-md-12">
+              Time available on <strong id="dateDisplay">{{data.date}}</strong>
+              <p id="timeNotAvailable">
+                {{#if timeNotAvailable}}
+                  {{timeNotAvailable}}
+                {{/if}}
+              </p>
 
-                        </div>
-                        <input type="hidden" id="timeFrom" name="timeFrom" class="form-control"
-                               value="{{data.timeFrom}}" required>
-                        <div id="option" class="col-md-12">
-                            {{#each data.options}}
-                                <button type="button" class="btn-time btn-sm btn-1" id="{{this.value}}"
-                                        onClick="setValue('{{this.value}}')">{{this.label}}</button>
-                            {{/each}}
-                        </div>
-                    </div>
-                    <p class="your-para">Your Query :</p>
-                    <textarea style="resize: none" maxlength="250" rows="2" cols="50" class="col-md-12"
-                              id="comments" name="comments"
-                              placeholder="Please enter your query here, if any...">{{data.comments}}</textarea>
-                    <ul class="actions">
-                        <li><input type="submit" class="style1" value="Send"/></li>
-                        <li><input type="reset" class="style2" value="Reset"/></li>
-                    </ul>
-                </div>
-            </form>
+            </div>
+            <input type="hidden" id="timeFrom" name="timeFrom" class="form-control"
+                   value="{{data.timeFrom}}" required>
+            <div id="option" class="col-md-12">
+              {{#each data.options}}
+                <button type="button" class="btn-time btn-sm btn-1" id="{{this.value}}"
+                        onClick="setValue('{{this.value}}')">{{this.label}}</button>
+              {{/each}}
+            </div>
+          </div>
+          <p class="your-para">Your Query :</p>
+          <textarea style="resize: none" maxlength="250" rows="2" cols="50" class="col-md-12"
+                    id="comments" name="comments"
+                    placeholder="Please enter your query here, if any...">{{data.comments}}</textarea>
+          <ul class="actions">
+            <li><input type="submit" class="style1" value="Send"/></li>
+            <li><input type="reset" class="style2" value="Reset"/></li>
+          </ul>
         </div>
+      </form>
     </div>
+  </div>
 </div>
 <script type="text/javascript">
-    function setValue(date) {
-        $("#timeFrom").val(date);
-        $(".btn-time").removeClass('selected');
-        $("#" + date).addClass('selected');
-        $("#" + date).attr('title', `Selected`);
+  $(document).ready(function () {
+    var options = window.location.search.slice(1)
+            .split('&')
+            .reduce(function _reduce(/*Object*/ a, /*String*/ b) {
+              b = b.split('=');
+              a[b[0]] = decodeURIComponent(b[1]);
+              return a;
+            }, {});
+    if (options.cancelMessage) {
+      $('#cancelMessage').html(options.cancelMessage)
+      $('#cancelMessage').removeClass('hide');
+      setTimeout(() => {
+        $('#cancelMessage').addClass('hide');
+        $('#cancelMessage').html('')
+      }, 15000)
     }
 
-    function checkAvailableTime(date) {
-        var selectedDate = new Date(date)
-        const month = selectedDate.toLocaleString('default', {month: 'long'});
-        const today = selectedDate.toLocaleString('default', {weekday: 'long'});
-        $("#dateDisplay").html(`${today}, ${month} ${selectedDate.getDate()}`)
-        $.ajax({
-            type: 'GET',
-            url: '/checkAvailableTime/' + date,
-            dataType: 'json',
-            cache: false,
-            data: {date: date},
-            success: function (data) {
-                var optionElm = $("#option")
-                optionElm.html('')
-                if (data.options.length > 0) {
-                    data.options.forEach(function (option, i) {
-                        var button = document.createElement('button')
-                        button.setAttribute("class", "btn-time btn-sm btn-1")
-                        button.setAttribute('type', 'button')
-                        button.setAttribute('id', option.value)
-                        button.addEventListener('click', function () {
-                            setValue(option.value)
-                        })
-                        button.innerText = option.label
-                        optionElm.append(button);
-                    });
-                } else {
-                    optionElm.html('Already booked.')
-                }
-                $("#timeNotAvailable").html(data.timeNotAvailable)
-            },
-            error: function () {
-                alert("Error while getting results");
-            }
-        });
-    }
+  })
+
+  function setValue(date) {
+    $("#timeFrom").val(date);
+    $(".btn-time").removeClass('selected');
+    $("#" + date).addClass('selected');
+    $("#" + date).attr('title', `Selected`);
+  }
+
+  function checkAvailableTime(date) {
+    var selectedDate = new Date(date)
+    const month = selectedDate.toLocaleString('default', {month: 'long'});
+    const today = selectedDate.toLocaleString('default', {weekday: 'long'});
+    $("#dateDisplay").html(`${today}, ${month} ${selectedDate.getDate()}`)
+    $.ajax({
+      type: 'GET',
+      url: '/checkAvailableTime/' + date,
+      dataType: 'json',
+      cache: false,
+      data: {date: date},
+      success: function (data) {
+        var optionElm = $("#option")
+        optionElm.html('')
+        if (data.options.length > 0) {
+          data.options.forEach(function (option, i) {
+            var button = document.createElement('button')
+            button.setAttribute("class", "btn-time btn-sm btn-1")
+            button.setAttribute('type', 'button')
+            button.setAttribute('id', option.value)
+            button.addEventListener('click', function () {
+              setValue(option.value)
+            })
+            button.innerText = option.label
+            optionElm.append(button);
+          });
+        } else {
+          optionElm.html('Already booked.')
+        }
+        $("#timeNotAvailable").html(data.timeNotAvailable)
+      },
+      error: function () {
+        alert("Error while getting results");
+      }
+    });
+  }
 </script>
