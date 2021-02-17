@@ -1,4 +1,6 @@
 # website-main
+This is a web development project for hijamahouse.co.uk using Node js
+
 ### Required
 1) Node js installed
 2) MySql Installed with database name defined in .env file
