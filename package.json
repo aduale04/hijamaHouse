@@ -7,10 +7,10 @@
     "src/"
   ],
   "scripts": {
-    "start": "ts-node-dev --respawn src/index.ts",
-    "test": "echo  \"Error: no test specified\" && exit 1",
-    "build": "tsc -p .",
-    "preinstall": "npm i -g typescript@3.8.3"
+    "start": "ts-node-dev --respawn src/index.ts --scripts-prepend-node-path",
+    "test": "echo  \"Error: no test specified\" && exit 1 --scripts-prepend-node-path",
+    "build": "tsc -p . --scripts-prepend-node-path",
+    "preinstall": "npm i -g typescript@3.8.3 --scripts-prepend-node-path"
   },
   "author": "hijama",
   "license": "ISC",
