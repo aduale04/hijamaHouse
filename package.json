@@ -9,7 +9,8 @@
   "scripts": {
     "start": "ts-node-dev --respawn src/index.ts",
     "test": "echo  \"Error: no test specified\" && exit 1",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "preinstall": "npm i -g typescript@3.8.3"
   },
   "author": "hijama",
   "license": "ISC",
